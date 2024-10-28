@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DVR Stint Planner</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="lib/easytimer.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="assets/img/dvr-gold.png"
+            alt="Deja Vu Racing logo"
+            height="30"
+            class="d-inline-block align-text-top me-3"
+          />
+          Stint Planner
+        </a>
+      </div>
+    </nav>
+
+    <div class="row" id="timers-container">
+      <div
+        class="col-md-9 d-flex flex-column justify-content-center align-items-center"
+      >
+        <h1 id="main-timer-output" class="audiowide-regular">00:00:00</h1>
+        <div id="setup-container">
+          <button
+            type="button"
+            class="btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Set parameters
+          </button>
+        </div>
+      </div>
+      <div id="info-container" class="col-md-3 d-flex flex-column px-3">
+        <div>Time until next driver change:</div>
+        <div id="next-stint-timer-output" class="audiowide-regular data-output">
+          00:00:00
+        </div>
+        <div>Stints remaining:</div>
+        <div id="stints-remaining-output" class="audiowide-regular data-output">
+          0
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          class="btn btn-primary"
+          id="btn-start-timer"
+          disabled
+          onclick="startTimer()"
+        >
+          Start timer
+        </button>
+        <button
+          class="btn btn-primary"
+          id="btn-start-timer"
+          onclick="executeDriverChange()"
+        >
+          Next stint
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Set race parameters
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="race-length-form-field" class="form-label"
+                >Race length (minutes)</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="race-length-form-field"
+              />
+            </div>
+            <div>
+              <label for="driver-switches-form-field" class="form-label"
+                >Number of stints</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="driver-switches-form-field"
+                aria-describedby="stintHelp"
+              />
+              <div id="stintHelp" class="form-text">
+                Number of driver changes +1 (to account for the initial stint)
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="setupVariables()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="assets/js/timers.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+</html>
